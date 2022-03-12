@@ -1,0 +1,95 @@
+﻿@model VBNET_Core3_project.Models.VistaPrestamoModel
+
+@{
+    ViewData["Title"] = "Crear Prestamo";
+}
+
+<header class="mb-4 ls-glass-h">
+    <div class="container ">
+        <div class="text-center my-4">
+            <h1 class="fw-bolder">@ViewData["Title"]</h1>
+        </div>
+    </div>
+</header>
+
+<div class="container ls-glass">
+    <form id="newform" asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+
+                <label asp-for="prestamo.IdCliente" class="control-label"> Cliente</label>
+                <select asp-for="prestamo.IdCliente" class="form-control">
+                    <option value="" selected>Choose...</option>
+
+                    @{
+                        if (Model != null && Model.clientes.Count() != 0)
+                        {
+                            foreach (var item in Model.clientes)
+                            {
+                                <option value="@item.IdCliente">@item.Nombre @item.Apellido</option>
+
+                            }
+                        }
+                    }
+
+                </select>
+                <span asp-validation-for="prestamo.IdCliente" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="prestamo.IdTipoPrestamo" class="control-label">Tipo de Prestamo </label>
+                <select asp-for="prestamo.IdTipoPrestamo" class="form-control">
+                    <option value="" selected>Choose...</option>
+                    @{
+                        if (Model != null && Model.tipoprestamos.Count() != 0)
+                        {
+                            foreach (var item in Model.tipoprestamos)
+                            {
+                                <option value="@item.IdTipoPrestamo">@item.Tipo</option>
+
+                            }
+                        }
+                    }
+                </select>
+                <span asp-validation-for="prestamo.IdTipoPrestamo" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="prestamo.Monto" class="control-label"></label>
+                <input asp-for="prestamo.Monto" class="form-control" />
+                <span asp-validation-for="prestamo.Monto" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="prestamo.Interes" class="control-label"></label>
+                <input asp-for="prestamo.Interes" class="form-control" />
+                <span asp-validation-for="prestamo.Interes" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="prestamo.Plazo" class="control-label"></label>
+                <input asp-for="prestamo.Plazo" class="form-control" />
+                <span asp-validation-for="prestamo.Plazo" class="text-danger"></span>
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <input type="submit" value="Crear" class="btn btn-primary" />
+
+            @Html.ActionLink("Cancelar", "Index", "Prestamo", null, new { @class = "btn btn-light" })
+
+        </div>
+    </form>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/lf-prestamo-create.js"></script>
+}

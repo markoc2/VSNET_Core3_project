@@ -1,0 +1,83 @@
+﻿@model List<VBNET_Core3_project.Models.VistaPrestamos>
+@{
+    ViewData["Title"] = "Prestamo del Clientes";
+}
+
+
+<header class="   mb-4 ls-glass-h">
+    <div class="container ">
+        <div class="text-center my-4">
+            <h1 class="fw-bolder">@ViewData["Title"]</h1>
+        </div>
+        <div class="col-sm-10 my-4">
+            @{
+                if (Model != null && Model.Count() != 0)
+                {
+                    var item = Model.FirstOrDefault(); 
+                    @Html.ActionLink("Crear Nuevo", "Create", new { id = item.IdCliente , vista ="List"}, new { @class = "btn btn-primary" });
+                }
+                else
+                {
+                    @Html.ActionLink("Crear Nuevo", "Create", "Prestamo", null, new { @class = "btn btn-primary" })
+                }
+            }
+        </div>
+    </div> 
+</header>
+  
+
+<div class="container ls-glass">
+    <table class="table table-striped  table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Monto</th>
+                <th scope="col">Interes</th>
+                <th scope="col">Plazo</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Estado</th>
+                <th scope="col" class="text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null && Model.Count() != 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Nombre @item.Apellido</td>
+
+                            <td>@item.Tipo</td>
+
+                            <td>@item.Monto</td>
+
+                            <td>@item.Interes</td>
+
+                            <td>@item.Plazo</td>
+
+                            <td>@item.FechaCreacion</td>
+
+                            <td>@item.EstadoPrestamo</td>
+
+                            <td class="text-center">
+                                @Html.ActionLink("", "Edit", new { id = item.IdPrestamo, vista = "List" }, new { @class = "fas fa-pen btn btn-secondary" }) |
+                                @Html.ActionLink("", "Delete", new { id = item.IdPrestamo }, new { @class = "fas fa-trash btn btn-danger" }) |
+                                @Html.ActionLink("", "List", "Pago", new { id = item.IdPrestamo }, new { @class = "fas fa-money-check-alt btn btn-info" })
+                            </td>
+                        </tr>
+
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8">No hay registros</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div> 

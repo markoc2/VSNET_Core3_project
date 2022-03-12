@@ -6,8 +6,9 @@
     <title>@ViewData["Title"] - VBNET_Core3_project</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-     <link rel="stylesheet" href="~/css/all.css" />
-   @* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">*@
+    <link rel="stylesheet" href="~/css/all.css" />
+    <link href="~/lib/sweetalert2/sweetalert2.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/mystile.css" />
 
 </head>
 <body>
@@ -23,11 +24,23 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"> Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-home"></i> Inicio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+                        <!-- Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Servicios / Catalogos
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cliente" asp-action="Index"><i class="fas fa-user-friends"></i> Clientes</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Prestamo" asp-action="Index"><i class="fas fa-money-check-alt"></i> Prestamos</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Pago" asp-action="Index"><i class="fas fa-receipt"></i> Pagos</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="TipoPrestamo" asp-action="Index"><i class="fas fa-list-ul"></i> Tipos de Prestamos</a>
+                            </div>
                         </li>
+                         
+
                     </ul>
                 </div>
             </div>
@@ -40,13 +53,14 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Marko_te_presta - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+		<div class="container">
+			&copy; 2022 - Marko_te_presta -@DateTime.Now.ToShortDateString() - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+		</div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

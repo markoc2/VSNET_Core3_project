@@ -1,0 +1,62 @@
+﻿@model List<VBNET_Core3_project.Models.TipoPrestamo>
+@{
+    ViewData["Title"] = "Catalogo de Tipo de Prestamos";
+}
+
+
+ 
+<header class="   mb-4 ls-glass-h">
+    <div class="container ">
+        <div class="text-center my-4">
+            <h1 class="fw-bolder">@ViewData["Title"]</h1>
+        </div>
+        <div class="col-sm-10 my-4">
+            @Html.ActionLink("Crear Nuevo Tipo de Prestamos", "Create", "TipoPrestamo", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+
+</header>
+
+
+<div class="container ls-glass">
+    <table class="table table-striped  table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Interes</th>
+                <th scope="col" class="text-center">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (Model != null && Model.Count() != 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.IdTipoPrestamo</td>
+
+                            <td>@item.Tipo</td>
+
+                            <td>@item.Interes</td>
+
+                            <td class="text-center">
+                                @Html.ActionLink("", "Edit", new { id = item.IdTipoPrestamo }, new { @class = "fas fa-pen btn btn-secondary" }) |
+                                @Html.ActionLink("", "Delete", new { id = item.IdTipoPrestamo }, new { @class = "fas fa-trash btn btn-danger" })
+                            </td>
+                        </tr>
+
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6">No hay registros</td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div> 

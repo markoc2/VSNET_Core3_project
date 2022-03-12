@@ -10,7 +10,9 @@ namespace VBNET_Core3_project.Data
             
         }
 
-        public DbSet<Cliente> clientes { get; set; }
-
+        public DbSet<Cliente> clientes { get; set; } 
+        public DbSet<Prestamo> prestamos { get; set; }
+        public DbSet<Pago> pagos { get; set; }
+        public DbSet<TipoPrestamo> tipoprestamos { get; set; }
     }
 }

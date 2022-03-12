@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VBNET_Core3_project.Models
 {
@@ -24,11 +26,12 @@ namespace VBNET_Core3_project.Models
         public string Telefono { get; set; }
         public int Genero { get; set; }
 
-        [StringLength(15)]
+        [StringLength(30)]
         [Required(ErrorMessage = "Este Campo Nombre es Requerido")]
         public string Cedula { get; set; }
         public int IdUsuario { get; set; }
-        public DateTime FechaCreacion { get; set; } 
+        public DateTime FechaCreacion { get; set; }
 
-}
+         
+    }
 }

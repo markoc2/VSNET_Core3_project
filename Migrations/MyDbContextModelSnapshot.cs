@@ -33,8 +33,8 @@ namespace VBNET_Core3_project.Migrations
 
                     b.Property<string>("Cedula")
                         .IsRequired()
-                        .HasColumnType("nvarchar(15)")
-                        .HasMaxLength(15);
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(500)")
@@ -62,6 +62,115 @@ namespace VBNET_Core3_project.Migrations
                     b.HasKey("IdCliente");
 
                     b.ToTable("clientes");
+                });
+
+            modelBuilder.Entity("VBNET_Core3_project.Models.Pago", b =>
+                {
+                    b.Property<int>("IdPago")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FechaPago")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdPrestamo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("MontoPagado")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("PagosFK")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdPago");
+
+                    b.HasIndex("PagosFK");
+
+                    b.ToTable("pagos");
+                });
+
+            modelBuilder.Entity("VBNET_Core3_project.Models.Prestamo", b =>
+                {
+                    b.Property<int>("IdPrestamo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreadoPor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EstadoPrestamo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdTipoPrestamo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Interes")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Monto")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Plazo")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PrestamosFK")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TipoPrestamoFK")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdPrestamo");
+
+                    b.HasIndex("PrestamosFK");
+
+                    b.HasIndex("TipoPrestamoFK");
+
+                    b.ToTable("prestamos");
+                });
+
+            modelBuilder.Entity("VBNET_Core3_project.Models.TipoPrestamo", b =>
+                {
+                    b.Property<int>("IdTipoPrestamo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Interes")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdTipoPrestamo");
+
+                    b.ToTable("tipoprestamos");
+                });
+
+            modelBuilder.Entity("VBNET_Core3_project.Models.Pago", b =>
+                {
+                    b.HasOne("VBNET_Core3_project.Models.Prestamo", "Prestamo")
+                        .WithMany()
+                        .HasForeignKey("PagosFK");
+                });
+
+            modelBuilder.Entity("VBNET_Core3_project.Models.Prestamo", b =>
+                {
+                    b.HasOne("VBNET_Core3_project.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("PrestamosFK");
+
+                    b.HasOne("VBNET_Core3_project.Models.TipoPrestamo", "TipoPrestamo")
+                        .WithMany()
+                        .HasForeignKey("TipoPrestamoFK");
                 });
 #pragma warning restore 612, 618
         }

@@ -21,50 +21,10 @@ namespace VBNET_Core3_project.Controllers
         public IActionResult Index()
         {
             //simular datos 
-
-            List<Cliente> clientes = new List<Cliente>();
-            clientes.Add(new Cliente()
-            {
-                Nombre = "Marco Antonio",
-                Apellido = "Cordoba Castrillo",
-                Direccion = "aqui y alla",
-                Telefono = "88810848",
-                Cedula = "201-xxxxxx-xxxx1"
-            });
-            clientes.Add(new Cliente()
-            {
-                Nombre = "Anielka",
-                Apellido = "Acevedo Fonseca",
-                Direccion = "aqui",
-                Telefono = "88810848",
-                Cedula = "001-xxxxxx-xxxx1"
-            });
-
-            clientes.Add(new Cliente()
-            {
-                Nombre = "Matias",
-                Apellido= "Cordoba Acevedo",    
-                Direccion = "alla mismo",
-                Telefono = "88810848",
-                Cedula = "N/A"
-            });
-
-            clientes.Add(new Cliente()
-            {
-                Nombre = "Nubia",
-                Apellido = "Cordoba Acevedo",
-                Direccion = "alla y aqui",
-                Telefono = "88810848",
-                Cedula = "N/A"
-            });
-
-            return View(clientes);
+             
+            return View( );
         }
 
-        public IActionResult Edit()
-        {
-            return View();
-        }
         public IActionResult Privacy()
         {
             return View();

@@ -11,27 +11,27 @@
             @Html.ActionLink("Crear Nuevo Cliente", "Create", "Cliente", null, new { @class = "btn btn-primary" })
         </div>
     </div>
-   
+
 </header>
 
 
 <!-- Page content-->
-<div class="container ls-glass">
+<div class="container ls-glass-grd">
 
-    <br />
-    @using (Html.BeginForm("Index", "Cliente", FormMethod.Post))
-    {
-        <p>
-            Buscar: @Html.TextBox("SearchString")
+    @*<br />
+        @using (Html.BeginForm("Index", "Cliente", FormMethod.Post))
+        {
+            <p>
+                Buscar: @Html.TextBox("SearchString")
 
-            <button type="submit" class="btn btn-primary btn-sm">
-                <span class="fa fa-filter"></span> Filtro
-            </button>
-        </p>
-    }
-   
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <span class="fa fa-filter"></span> Filtro
+                </button>
+            </p>
+        }*@
+
     <div>
-        <table class="table table-striped  table-hover">
+        <table class="table table-striped  table-hover" id="clientes-table">
             <thead>
                 <tr>
                     <th scope="col">Nombre </th>
@@ -72,3 +72,9 @@
         </table>
     </div>
 </div>
+
+
+
+@section Scripts {
+    <script src="~/js/lf-cliente-index.js"></script>
+}

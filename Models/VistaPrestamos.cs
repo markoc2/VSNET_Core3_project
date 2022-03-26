@@ -35,7 +35,19 @@ namespace VBNET_Core3_project.Models
     {
         public List<Cliente> clientes { get; set; }
         public Prestamo prestamo { get; set; }
+         
         public List<TipoPrestamo> tipoprestamos { get; set; }
+
+    }
+
+
+    public class VistaPrestamoPagoModel
+    {
+       
+        public  VistaPrestamos  prestamo { get; set; }
+
+        public List<Pago>  pago { get; set; }
+        
 
     }
 }

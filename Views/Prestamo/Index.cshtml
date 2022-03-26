@@ -3,7 +3,6 @@
     ViewData["Title"] = "Prestamos";
 
 }
-<link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css" />
 
 <header class="   mb-4 ls-glass-h">
     <div class="container ">
@@ -17,8 +16,8 @@
 
 </header>
 
-<div class="container ls-glass">
-    @using (Html.BeginForm("Index", "Prestamo", FormMethod.Post))
+<div class="container ls-glass-grd">
+    @*@using (Html.BeginForm("Index", "Prestamo", FormMethod.Post))
     {
         <p>
             Buscar: @Html.TextBox("SearchString")
@@ -27,7 +26,7 @@
                 <span class="fa fa-filter"></span> Filtro
             </button>
         </p>
-    }
+    }*@
 
     <table class="table table-striped  table-hover" id="prestamos-table">
         <thead>
@@ -93,7 +92,6 @@
     </table>
 </div>
 
-@section Scripts {
-    <script type="text/javascript" src="~/lib/DataTables/datatables.min.js"></script>
+@section Scripts { 
     <script src="~/js/lf-prestamo-index.js"></script>
 }

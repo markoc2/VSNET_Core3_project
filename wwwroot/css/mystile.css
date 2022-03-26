@@ -33,6 +33,16 @@ footer {
     -webkit-backdrop-filter: blur(16.6px);
     border: 1px solid rgba(255, 255, 255, 0.74);
 }
+.ls-glass-grd {
+    background: rgba(255, 255, 255, 0.82);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(16.6px);
+    -webkit-backdrop-filter: blur(16.6px);
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
 .item {
     margin: 8px;
@@ -67,4 +77,9 @@ h1 {
 h2 {
     text-align: center;
     color: #0396FF; 
+}
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #ADD8E6;
 }

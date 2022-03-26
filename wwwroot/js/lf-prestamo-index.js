@@ -1,5 +1,9 @@
 ﻿$(document).ready(function () {
-    $('#prestamos-table').DataTable();
+    $('#prestamos-table').DataTable({
+        "language": {
+            "url": "/lib/DataTables/es-MX.json"
+        }
+    } );
 
 
     delete_item = function (IdPrestamo, that) {

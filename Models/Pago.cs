@@ -17,7 +17,8 @@ namespace VBNET_Core3_project.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal  MontoPagado { get; set; }
         public DateTime FechaPago { get; set; }
-         
+        public string Estado { get; set; }
+
 
         [ForeignKey("PagosFK")]
         public Prestamo Prestamo { get; set; }

@@ -1,0 +1,174 @@
+﻿@model VistaPrestamoPagoModel
+@{
+    ViewData["Title"] = "Detalle de Prestamo - Pago";
+}
+
+<header class="   mb-4 ls-glass-h">
+    <div class="container ">
+        <div class="text-center my-4">
+            <h1 class="fw-bolder">@ViewData["Title"]</h1>
+        </div>
+    </div>
+
+
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 order-md-1 mb-4">
+            <div class="container ls-glass-grd">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Cliente</span>
+                </h4>
+
+                <h4> <span class="badge badge-secondary"> @Model.prestamo.Nombre  @Model.prestamo.Apellido</span></h4>
+
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Prestamo</span>
+                </h4>
+
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Tipo</h6>
+                        </div>
+                        <span class="text-muted">@Model.prestamo.Tipo</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Fecha</h6>
+                        </div>
+                        <span class="text-muted">@Model.prestamo.FechaCreacion.ToString("dd/MM/yyyy")</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Monto</h6>
+                        </div>
+                        <span class="text-muted">$@Model.prestamo.Monto</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Interes</h6>
+                        </div>
+                        <span class="text-muted">$@Model.prestamo.Interes</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Plazo</h6>
+                        </div>
+                        <span class="text-muted">@Model.prestamo.Plazo</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">Estado</h6>
+                        </div>
+                        @{
+                            if (Model.prestamo.EstadoPrestamo == "Creado")
+                            {
+                                <span class="badge badge-secondary">@Model.prestamo.EstadoPrestamo</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-secondary">@Model.prestamo.EstadoPrestamo</span>
+                            }
+                        }
+
+                    </li>
+
+                </ul>
+                <div class="col-sm-10 my-4">
+                    @Html.ActionLink("Regrear a Prestamos", "Index", "Prestamo", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8  order-md-2">
+            <div class="container ls-glass-grd">
+                @{
+                    if (Model.prestamo.EstadoPrestamo == "Creado")
+                    {
+                        <h3 class="fw-bolder">El prestamo no ha sido aprobado</h3>
+                    }
+                    else
+                    {
+                        <table class="table table-striped  table-hover" id="pagos-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">N°.</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col" class="text-center">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    if (Model != null && Model.pago.Count() != 0)
+                                    {
+
+                                        int rowNo = 1;
+                                        foreach (var item in Model.pago)
+                                        {
+                                            <tr>
+                                                <td> @rowNo  </td>
+                                                <td>@item.FechaPago.ToString("dd/MM/yyyy")</td>
+
+                                                <td>@item.MontoPagado</td>
+
+                                                <td>
+                                                    @{
+                                                        if (item.Estado == "Pendiente")
+                                                        {
+                                                            <span class="badge badge-secondary">@item.Estado</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="badge badge-primary">@item.Estado</span>
+                                                        }
+                                                    } 
+                                                </td>
+
+                                                <td class="text-center">
+                                                    @{
+                                                        if (item.Estado == "Pendiente")
+                                                        {
+                                                             <a class="fas fa-money-check-alt btn btn-info" href="#" onclick="pagar_item(@item.IdPago,@item.IdPrestamo,this);"></a>
+                                                        }
+                                                        else
+                                                        {
+                                                             <span>...</span>  
+                                                                                        
+                                                        }
+                                                    }
+
+                                                </td>
+                                            </tr>
+                                            rowNo++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="8">No hay registros</td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    }
+                }
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+       
+        <br />
+     
+
+        @section Scripts {
+            <script src="~/js/lf-pago-list.js"></script>
+        }
